@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+##
+## TimelapsePhotoOrganiser.py
+## TimelapsePhotoOrganiser
+##
+## Created by Kun Tat on 26/8/16.
+##
+
+
 import sys
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
@@ -47,7 +56,7 @@ class timelapsePhotoOrganiserGUI(QMainWindow):
 
         window = QWidget()
         window.setLayout(layout)
-        window.setWindowTitle("Timlapse Photo Organiser")
+        self.setWindowTitle("Timlapse Photo Organiser")
         self.setCentralWidget(window)
 
     def getfilesDialog(self):
