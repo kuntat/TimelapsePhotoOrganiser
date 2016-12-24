@@ -2,11 +2,11 @@
 ## TimelapsePhotoOrganiser.py
 ## TimelapsePhotoOrganiser
 ##
-## Created by Kun Tat on 14/5/16.
+## Created by Kun Tat on 26/8/16.
 ##
 
 
-from os import listdir, makedirs
+from os import listdir, makedirs, stat
 from os.path import isfile, join, getmtime, isdir, exists
 from time import ctime
 from shutil import move
@@ -22,18 +22,24 @@ def mkdir_p(path):
         if exc.errno == errno.EEXIST and isdir(path):
             pass
         else:
-            return False        
+            return False
+        
+def sorted_ls(path):
+    mtime = lambda f: stat(join(path, f)).st_mtime
+    return list(sorted(listdir(path), key=mtime))
+
 
 def organise(inputpath, checkDimensions):
-    ##mypath = "/Users/kuntat/Desktop/new"    
+
     mypath = str(inputpath)
     print mypath
     print checkDimensions
     try:
         assert exists(mypath), "I did not find the folder at "+str(mypath)
     except AssertionError, e:
-        return False       
-    onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f)) and not f.startswith('.')]
+        return False
+    sortedFiles = sorted_ls(mypath)
+    onlyfiles = [f for f in sortedFiles if isfile(join(mypath, f)) and not f.startswith('.')]
     print len(onlyfiles)
     print "Moving your stuff for you..."
     foldernumber = 1
