@@ -56,7 +56,7 @@ class timelapsePhotoOrganiserGUI(QMainWindow):
 
         window = QWidget()
         window.setLayout(layout)
-        self.setWindowTitle("Timlapse Photo Organiser")
+        self.setWindowTitle("Timelapse Photo Organiser")
         self.setCentralWidget(window)
 
     def getfilesDialog(self):
